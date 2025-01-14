@@ -1,0 +1,5 @@
+<resources>
+    <style name="CustomProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/custom_progress</item>
+    </style>
+</resources>

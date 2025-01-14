@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    tools:context=".MainGame"
+    android:background="@drawable/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Indonesia"
+        android:textColor="#000000"
+        android:textSize="12sp" />
+
+    <!-- Greeting -->
+    <TextView
+        android:id="@+id/greetingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationText"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Hello, Putri Maharani!"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="14sp" />
+
+    <!-- Search Bar -->
+    <EditText
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/greetingText"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_search_background"
+        android:hint="Search..."
+        android:paddingStart="16dp"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <!-- Yoga Session Card -->
+    <LinearLayout
+        android:id="@+id/yogaCard"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@id/searchBar"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_zino"
+        android:orientation="vertical"
+        android:padding="16dp">
+    </LinearLayout>
+
+    <!-- Yoga Kriya List -->
+    <TextView
+        android:id="@+id/yogaKriyaTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/yogaCard"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Rekomendasi"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/yogaKriyaList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/yogaKriyaTitle"
+        android:layout_marginTop="8dp"
+        tools:listitem="@layout/item_putri" />
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemIconTint="@color/primarydark"
+        app:itemTextColor="@color/primarydark"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_item" />
+
+
+</RelativeLayout>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Game Edukasi</string>
+    <string name="favorites">Favorites</string>
+    <string name="home">Home</string>
+    <string name="library">Library</string>
+    <string name="profile">profile</string>
+    <string name="back">back</string>
+    <string name="next">Next</string>
+    <string name="prev">Previous</string>
+    <string name="favorite">favorite</string>
+    <string name="share_whatsapp">Share on WhatsApp</string>
+    <string name="share_facebook">Share on Facebook</string>
+    <string name="share_instagram">Share on Instagram</string>
+    <string name="add_to_favorites">favorite</string>
+    <string name="boss_image">BOSS\n</string>
+    <string name="submit">submit</string>
+    <string name="back_button">Back</string>
+    <string name="unit_1">Unit 1</string>
+    <string name="question_title">Questions</string>
+    <string name="question_text">What activity is shown in this picture?</string>
+</resources>
