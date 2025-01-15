@@ -18,4 +18,5 @@
     <string name="unit_1">Unit 1</string>
     <string name="question_title">Questions</string>
     <string name="question_text">What activity is shown in this picture?</string>
+    <string name="logo_desc">Zino App</string>
 </resources>

@@ -3,6 +3,7 @@ package com.putrimaharani.gameedukasi;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -15,7 +16,6 @@ import com.putrimaharani.gameedukasi.databinding.ActivityMainGameBinding;
 import com.putrimaharani.gameedukasi.menu.LeaderboardActivity;
 import com.putrimaharani.gameedukasi.menu.QuizActivity;
 import com.putrimaharani.gameedukasi.menu.SettingsActivity;
-import com.putrimaharani.gameedukasi.menu.StartGameActivity;
 
 public class MainGame extends AppCompatActivity {
     private ActivityMainGameBinding binding;
@@ -24,9 +24,12 @@ public class MainGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Menyembunyikan status bar
+        // Menyembunyikan status bar dan navigasi untuk layar penuh
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         // Inisialisasi View Binding
         binding = ActivityMainGameBinding.inflate(getLayoutInflater());
@@ -44,11 +47,11 @@ public class MainGame extends AppCompatActivity {
             if (selectedItem instanceof MenuItem) {
                 String title = ((MenuItem) selectedItem).getTitle();
                 if ("Start Game".equals(title)) {
-                    startActivity(new Intent(MainGame.this, QuizActivity.class)); // Ganti dengan activity sesuai
+                    startActivity(new Intent(MainGame.this, QuizActivity.class));
                 } else if ("Leaderboard".equals(title)) {
-                    startActivity(new Intent(MainGame.this, LeaderboardActivity.class)); // Ganti dengan activity sesuai
+                    startActivity(new Intent(MainGame.this, LeaderboardActivity.class));
                 } else if ("Settings".equals(title)) {
-                    startActivity(new Intent(MainGame.this, SettingsActivity.class)); // Ganti dengan activity sesuai
+                    startActivity(new Intent(MainGame.this, SettingsActivity.class));
                 }
             }
         });

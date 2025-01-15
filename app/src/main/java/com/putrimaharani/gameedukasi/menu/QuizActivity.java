@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
-
+import android.animation.ObjectAnimator;
+import android.animation.AnimatorSet;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -79,6 +80,10 @@ public class QuizActivity extends AppCompatActivity {
         if (userAnswer.equalsIgnoreCase(correctAnswers[currentIndex])) {
             // Menampilkan Toast sebagai alert jika jawaban benar
             Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+
+            // Animasi halus pada gambar dan teks setelah jawaban benar
+            animateCorrectAnswer();
+
             // Berikan alert yang memberi tahu jawaban benar
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Correct Answer!")
@@ -91,6 +96,22 @@ public class QuizActivity extends AppCompatActivity {
             Toast.makeText(this, "Wrong Answer. Try Again!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    // Method untuk menambahkan animasi halus
+    private void animateCorrectAnswer() {
+        // Animasi zoom-in untuk gambar dan teks
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(binding.questionImage, "scaleX", 1f, 1.2f, 1f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(binding.questionImage, "scaleY", 1f, 1.2f, 1f);
+        ObjectAnimator scaleTextX = ObjectAnimator.ofFloat(binding.questionText, "scaleX", 1f, 1.2f, 1f);
+        ObjectAnimator scaleTextY = ObjectAnimator.ofFloat(binding.questionText, "scaleY", 1f, 1.2f, 1f);
+
+        // Menggabungkan animasi menjadi satu set
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(scaleX, scaleY, scaleTextX, scaleTextY);
+        animatorSet.setDuration(1000); // Durasi animasi dalam milidetik
+        animatorSet.start(); // Menjalankan animasi
+    }
+
 
 
     // Method untuk pindah ke pertanyaan berikutnya
