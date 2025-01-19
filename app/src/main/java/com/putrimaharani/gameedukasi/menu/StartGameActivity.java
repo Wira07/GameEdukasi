@@ -2,9 +2,11 @@ package com.putrimaharani.gameedukasi.menu;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.graphics.Insets;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.view.WindowInsets;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -31,9 +33,23 @@ public class StartGameActivity extends AppCompatActivity {
         binding = ActivityStartGameBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            getWindow().getDecorView().setOnApplyWindowInsetsListener((view, insets) -> {
+                // Menghilangkan padding/area hitam
+                Insets systemBarsInsets = insets.getInsets(WindowInsets.Type.systemBars());
+                view.setPadding(0, 0, 0, 0); // Pastikan padding dihapus
+                return WindowInsets.CONSUMED; // Gunakan WindowInsets.CONSUMED
+            });
+        } else {
+            // Cara lama untuk versi sebelum Android 11
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+            );
+        }
         // Load animation
         smallbigforth = AnimationUtils.loadAnimation(this, R.anim.smallbigforth);
-
         // Shuffle keys and initialize the game
         keys = shuffleArray(keys);
         initializeGame();
@@ -62,6 +78,7 @@ public class StartGameActivity extends AppCompatActivity {
         }
         return array;
     }
+
     @SuppressLint("UseCompatLoadingForDrawables")
     private void addKeyView(final String key) {
         // Create TextView dynamically for each key
