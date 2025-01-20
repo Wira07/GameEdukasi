@@ -19,4 +19,5 @@
     <string name="question_title">Questions</string>
     <string name="question_text">What activity is shown in this picture?</string>
     <string name="logo_desc">Zino App</string>
+    <string name="high_score_icon">High Score</string>
 </resources>

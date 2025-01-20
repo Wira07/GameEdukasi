@@ -16,6 +16,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:padding="12dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/header_background"
         android:elevation="4dp">
 
@@ -77,10 +78,10 @@
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_profile_picture"
+            android:src="@drawable/sayang"
             android:clipToOutline="true"
             android:scaleType="centerCrop"
-            android:background="@drawable/profile_picture_border"
+            android:background="@drawable/sayang"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 

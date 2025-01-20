@@ -8,15 +8,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+
+import com.putrimaharani.gameedukasi.MainGame;
 import com.putrimaharani.gameedukasi.R;
 import com.putrimaharani.gameedukasi.databinding.ActivityQuizBinding;
+
+import android.content.Intent; // Import this for navigating to MainGameActivity
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -26,27 +32,25 @@ public class QuizActivity extends AppCompatActivity {
     private int[] imageResources = {
             R.drawable.ic_pencil, // Gambar 1
             R.drawable.ic_book,   // Gambar 2
-            R.drawable.ic_badak,   // Gambar 3
-            R.drawable.ic_dino,   // Gambar 3
-            R.drawable.ic_saurus,   // Gambar 3
+            R.drawable.ic_bike,   // Gambar 3
+            R.drawable.ic_badak,   // Gambar 4
+            R.drawable.ic_dino,   // Gambar 5
     };
 
     private String[] questions = {
             "What activity is shown in this picture?",  // Pertanyaan untuk gambar 1
             "What is used for reading?",               // Pertanyaan untuk gambar 2
             "What is used for riding on the road?",    // Pertanyaan untuk gambar 3
-            "What was the Triceratops favorite food?",
-            "Where does Dinoo live?",
-            "Who is Ptera's best friend?"
+            "What was the Triceratops favorite food?", // Pertanyaan untuk gambar 4
+            "Where does Dinoo live?",                 // Pertanyaan untuk gambar 5
     };
 
     private String[] correctAnswers = {
             "write",  // Jawaban benar untuk gambar 1
             "read",   // Jawaban benar untuk gambar 2
-            "bike",    // Jawaban benar untuk gambar 3
-            "fruit",
-            "forest",
-            "Dinoo"
+            "bike",   // Jawaban benar untuk gambar 3
+            "fruit",  // Jawaban benar untuk gambar 4
+            "forest", // Jawaban benar untuk gambar 5
     };
 
     private int currentIndex = 0; // Indeks gambar dan pertanyaan saat ini
@@ -72,20 +76,32 @@ public class QuizActivity extends AppCompatActivity {
             checkAnswer(userAnswer);
         });
 
-        // Sistem insets (untuk API 30+ dan versi lebih rendah)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        // Mengatur padding sesuai dengan insets
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // Menangani status bar dengan menggunakan WindowInsets
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
             getWindow().getDecorView().setOnApplyWindowInsetsListener((view, insets) -> {
-                Insets systemBarsInsets = WindowInsetsCompat.toWindowInsetsCompat(insets).getInsets(WindowInsetsCompat.Type.systemBars());
-                view.setPadding(systemBarsInsets.left, systemBarsInsets.top, systemBarsInsets.right, systemBarsInsets.bottom);
-                return insets;
+                // Menghilangkan padding/area hitam
+                android.graphics.Insets systemBarsInsets = insets.getInsets(WindowInsets.Type.systemBars());
+                view.setPadding(0, 0, 0, 0); // Pastikan padding dihapus
+                return WindowInsets.CONSUMED; // Gunakan WindowInsets.CONSUMED
             });
         } else {
+            // Cara lama untuk versi sebelum Android 11
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
-            );
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+
     }
 
     // Method untuk mengupdate pertanyaan dan gambar
@@ -117,10 +133,13 @@ public class QuizActivity extends AppCompatActivity {
     private void goToNextQuestion() {
         currentIndex++;
         if (currentIndex >= imageResources.length) {
-            currentIndex = 0;
-            Toast.makeText(this, "You finished all questions! Restarting.", Toast.LENGTH_LONG).show();
+            // If the user finishes all questions, navigate to MainGameActivity
+            Intent intent = new Intent(QuizActivity.this, MainGame.class); // Change MainGameActivity to the correct class name
+            startActivity(intent);
+            finish(); // End the current activity
+        } else {
+            updateQuestion();
         }
-        updateQuestion();
     }
 
     private void enableEdgeToEdge() {

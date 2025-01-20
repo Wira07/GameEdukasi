@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowInsets;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -31,11 +32,31 @@ public class LoginActivity extends AppCompatActivity {
             navigateToMainGame();
         }
 
+        // Mengatur padding sesuai dengan insets
         ViewCompat.setOnApplyWindowInsetsListener(binding.main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Menangani status bar dengan menggunakan WindowInsets
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            getWindow().getDecorView().setOnApplyWindowInsetsListener((view, insets) -> {
+                // Menghilangkan padding/area hitam
+                android.graphics.Insets systemBarsInsets = insets.getInsets(WindowInsets.Type.systemBars());
+                view.setPadding(0, 0, 0, 0); // Pastikan padding dihapus
+                return WindowInsets.CONSUMED; // Gunakan WindowInsets.CONSUMED
+            });
+        } else {
+            // Cara lama untuk versi sebelum Android 11
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
 
         binding.signupLink.setOnClickListener(v -> {
             Intent intent = new Intent(this, RegisterActivity.class);

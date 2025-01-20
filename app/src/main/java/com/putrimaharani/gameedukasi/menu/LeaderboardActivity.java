@@ -63,6 +63,11 @@ public class LeaderboardActivity extends AppCompatActivity {
         scoreList.add(new Score("Player 1", 1200));
         scoreList.add(new Score("Player 2", 1100));
         scoreList.add(new Score("Player 3", 1000));
+        scoreList.add(new Score("Player 4", 1000));
+        scoreList.add(new Score("Player 5", 1000));
+        scoreList.add(new Score("Player 6", 1000));
+        scoreList.add(new Score("Player 7", 1000));
+        scoreList.add(new Score("Player 8", 1000));
 
         // Set up RecyclerView using ViewBinding
         scoreAdapter = new ScoreAdapter(scoreList);

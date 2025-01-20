@@ -64,11 +64,12 @@ public class MainGame extends AppCompatActivity {
                     startActivity(new Intent(MainGame.this, QuizActivity.class));
                 } else if ("Leaderboard".equals(title)) {
                     startActivity(new Intent(MainGame.this, LeaderboardActivity.class));
-                } else if ("Settings".equals(title)) {
+                } else if ("About".equals(title)) { // Perbaiki di sini
                     startActivity(new Intent(MainGame.this, SettingsActivity.class));
                 }
             }
         });
+
 
         // Mengatur RecyclerView
         binding.yogaKriyaList.setLayoutManager(new LinearLayoutManager(this));

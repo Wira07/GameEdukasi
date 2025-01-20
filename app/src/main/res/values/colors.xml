@@ -21,4 +21,5 @@
     <color name="accent_color">#FF4081</color>
     <color name="button_background">#FFFFFF</color>
     <color name="progress_background">#D6D6D6</color>
+    <color name="purple_700">#673AB7</color>
 </resources>

@@ -5,24 +5,50 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menu.LeaderboardActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:context=".menu.LeaderboardActivity">
+
+    <!-- Logo/High Score Icon -->
+    <ImageView
+        android:id="@+id/leaderboardIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/high_score_icon"
+        android:src="@drawable/high_score_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Title for Leaderboard -->
     <TextView
         android:id="@+id/leaderboardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
         android:text="Leaderboard"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/leaderboardIcon" />
+
+    <!-- Decorative Divider -->
+    <View
+        android:id="@+id/titleDivider"
+        android:layout_width="64dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaderboardTitle" />
 
     <!-- RecyclerView to display the scores -->
     <androidx.recyclerview.widget.RecyclerView
@@ -30,11 +56,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        tools:listitem="@layout/item_score"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboardTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"
+        android:clipToPadding="false"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:padding="16dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleDivider"
+        tools:listitem="@layout/item_score" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
