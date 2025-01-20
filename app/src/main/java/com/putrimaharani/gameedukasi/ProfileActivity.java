@@ -2,6 +2,7 @@ package com.putrimaharani.gameedukasi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -64,11 +65,19 @@ public class ProfileActivity extends AppCompatActivity {
     private void setupLogoutButton() {
         // Listener untuk tombol logout
         binding.buttonPanel.setOnClickListener(v -> {
+            // Hapus status login dari SharedPreferences
+            SharedPreferences preferences = getSharedPreferences("GameEdukasiPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("isLoggedIn", false); // Set status login ke false
+            editor.apply();
+
             // Arahkan ke LoginActivity
             Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
             startActivity(intent);
+
             // Tutup aktivitas saat ini
             finish();
         });
     }
+
 }

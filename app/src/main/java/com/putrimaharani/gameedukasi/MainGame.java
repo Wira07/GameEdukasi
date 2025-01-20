@@ -58,7 +58,7 @@ public class MainGame extends AppCompatActivity {
 
         // Mengatur RecyclerView dengan listener klik
         MenuAdapter adapter = new MenuAdapter(menuList, selectedItem -> {
-            if (selectedItem instanceof MenuItem) {
+            if (selectedItem != null) {
                 String title = ((MenuItem) selectedItem).getTitle();
                 if ("Start Game".equals(title)) {
                     startActivity(new Intent(MainGame.this, QuizActivity.class));
@@ -77,7 +77,6 @@ public class MainGame extends AppCompatActivity {
         // Setup Bottom Navigation
         setupBottomNavigation();
     }
-
 
     @SuppressLint("NonConstantResourceId")
     private void setupBottomNavigation() {

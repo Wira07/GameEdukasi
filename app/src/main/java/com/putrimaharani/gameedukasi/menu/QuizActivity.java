@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,24 +22,31 @@ public class QuizActivity extends AppCompatActivity {
 
     private ActivityQuizBinding binding;
     private MediaPlayer mediaPlayer;
-
     // Array gambar dan pertanyaan
     private int[] imageResources = {
             R.drawable.ic_pencil, // Gambar 1
             R.drawable.ic_book,   // Gambar 2
-            R.drawable.ic_bike    // Gambar 3
+            R.drawable.ic_badak,   // Gambar 3
+            R.drawable.ic_dino,   // Gambar 3
+            R.drawable.ic_saurus,   // Gambar 3
     };
 
     private String[] questions = {
             "What activity is shown in this picture?",  // Pertanyaan untuk gambar 1
             "What is used for reading?",               // Pertanyaan untuk gambar 2
-            "What is used for riding on the road?"      // Pertanyaan untuk gambar 3
+            "What is used for riding on the road?",    // Pertanyaan untuk gambar 3
+            "What was the Triceratops favorite food?",
+            "Where does Dinoo live?",
+            "Who is Ptera's best friend?"
     };
 
     private String[] correctAnswers = {
             "write",  // Jawaban benar untuk gambar 1
             "read",   // Jawaban benar untuk gambar 2
-            "bike"    // Jawaban benar untuk gambar 3
+            "bike",    // Jawaban benar untuk gambar 3
+            "fruit",
+            "forest",
+            "Dinoo"
     };
 
     private int currentIndex = 0; // Indeks gambar dan pertanyaan saat ini
