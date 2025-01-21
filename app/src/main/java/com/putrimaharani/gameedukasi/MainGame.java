@@ -3,19 +3,26 @@ package com.putrimaharani.gameedukasi;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Insets;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.widget.ViewFlipper;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.putrimaharani.gameedukasi.adapter.MenuAdapter;
 import com.putrimaharani.gameedukasi.data.MenuItem;
 import com.putrimaharani.gameedukasi.databinding.ActivityMainGameBinding;
 import com.putrimaharani.gameedukasi.menu.LeaderboardActivity;
 import com.putrimaharani.gameedukasi.menu.QuizActivity;
 import com.putrimaharani.gameedukasi.menu.SettingsActivity;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainGame extends AppCompatActivity {
     private ActivityMainGameBinding binding;
@@ -29,9 +36,8 @@ public class MainGame extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // Menangani status bar dengan menggunakan WindowInsets
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             getWindow().getDecorView().setOnApplyWindowInsetsListener((view, insets) -> {
-                // Menghilangkan padding/area hitam
                 Insets systemBarsInsets = insets.getInsets(WindowInsets.Type.systemBars());
                 view.setPadding(0, 0, 0, 0); // Pastikan padding dihapus
                 return WindowInsets.CONSUMED; // Gunakan WindowInsets.CONSUMED
@@ -50,7 +56,7 @@ public class MainGame extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Data untuk RecyclerView
-        java.util.List<MenuItem> menuList = java.util.Arrays.asList(
+        List<MenuItem> menuList = Arrays.asList(
                 new MenuItem("Start Game", "Mulai permainan baru", R.drawable.logo_play),
                 new MenuItem("Leaderboard", "Lihat skor tertinggi", R.drawable.quiz),
                 new MenuItem("About", "Pengaturan permainan", R.drawable.about)
@@ -59,30 +65,44 @@ public class MainGame extends AppCompatActivity {
         // Mengatur RecyclerView dengan listener klik
         MenuAdapter adapter = new MenuAdapter(menuList, selectedItem -> {
             if (selectedItem != null) {
-                String title = ((MenuItem) selectedItem).getTitle();
+                String title = selectedItem.getTitle();
                 if ("Start Game".equals(title)) {
                     startActivity(new Intent(MainGame.this, QuizActivity.class));
                 } else if ("Leaderboard".equals(title)) {
                     startActivity(new Intent(MainGame.this, LeaderboardActivity.class));
-                } else if ("About".equals(title)) { // Perbaiki di sini
+                } else if ("About".equals(title)) {
                     startActivity(new Intent(MainGame.this, SettingsActivity.class));
                 }
             }
         });
 
-
         // Mengatur RecyclerView
         binding.yogaKriyaList.setLayoutManager(new LinearLayoutManager(this));
         binding.yogaKriyaList.setAdapter(adapter);
+
+        // Mengatur ViewFlipper
+        setupYogaFlipper();
 
         // Setup Bottom Navigation
         setupBottomNavigation();
     }
 
+    private void setupYogaFlipper() {
+        ViewFlipper viewFlipper = binding.yogaFlipper;
+
+        // Mengatur animasi untuk ViewFlipper
+        viewFlipper.setInAnimation(this, R.anim.slide_in_right);
+        viewFlipper.setOutAnimation(this, R.anim.slide_out_left);
+
+        // Mulai auto flip
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(3000); // Interval 3 detik
+    }
+
     @SuppressLint("NonConstantResourceId")
     private void setupBottomNavigation() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId(); // Ambil item ID
+            int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {
                 startActivity(new Intent(MainGame.this, MainActivity.class));
                 return true;

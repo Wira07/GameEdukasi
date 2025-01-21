@@ -10,18 +10,15 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
-
 import com.putrimaharani.gameedukasi.MainGame;
 import com.putrimaharani.gameedukasi.R;
 import com.putrimaharani.gameedukasi.databinding.ActivityQuizBinding;
-
 import android.content.Intent; // Import this for navigating to MainGameActivity
 
 public class QuizActivity extends AppCompatActivity {

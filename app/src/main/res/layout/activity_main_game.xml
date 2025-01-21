@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,7 +47,7 @@
         android:textColor="#000000"
         android:textSize="16sp" />
 
-    <!-- Yoga Session Card -->
+    <!-- Yoga Session Card with ViewFlipper -->
     <LinearLayout
         android:id="@+id/yogaCard"
         android:layout_width="match_parent"
@@ -60,6 +59,37 @@
         android:background="@drawable/bg_zino"
         android:orientation="vertical"
         android:padding="16dp">
+
+        <ViewFlipper
+            android:id="@+id/yogaFlipper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoStart="true"
+            android:flipInterval="3000"
+            android:inAnimation="@anim/slide_in_right"
+            android:outAnimation="@anim/slide_out_left">
+
+            <!-- Slide 1 -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bg_zino"
+                android:scaleType="centerCrop" />
+
+            <!-- Slide 2 -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bg_zino"
+                android:scaleType="centerCrop" />
+
+            <!-- Slide 3 -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bg_zino"
+                android:scaleType="centerCrop" />
+        </ViewFlipper>
     </LinearLayout>
 
     <!-- Yoga Kriya List -->
@@ -94,6 +124,4 @@
         app:itemTextColor="@color/primarydark"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/menu_item" />
-
-
 </RelativeLayout>
