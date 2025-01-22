@@ -58,8 +58,8 @@ public class MainGame extends AppCompatActivity {
         // Data untuk RecyclerView
         List<MenuItem> menuList = Arrays.asList(
                 new MenuItem("Start Game", "Mulai permainan baru", R.drawable.logo_play),
-                new MenuItem("Leaderboard", "Lihat skor tertinggi", R.drawable.quiz),
-                new MenuItem("About", "Pengaturan permainan", R.drawable.about)
+                new MenuItem("Leaderboard", "Lihat skor tertinggi", R.drawable.ic_quiz),
+                new MenuItem("Setting", "Pengaturan permainan", R.drawable.ic_setting)
         );
 
         // Mengatur RecyclerView dengan listener klik
@@ -70,7 +70,7 @@ public class MainGame extends AppCompatActivity {
                     startActivity(new Intent(MainGame.this, QuizActivity.class));
                 } else if ("Leaderboard".equals(title)) {
                     startActivity(new Intent(MainGame.this, LeaderboardActivity.class));
-                } else if ("About".equals(title)) {
+                } else if ("Setting".equals(title)) {
                     startActivity(new Intent(MainGame.this, SettingsActivity.class));
                 }
             }
