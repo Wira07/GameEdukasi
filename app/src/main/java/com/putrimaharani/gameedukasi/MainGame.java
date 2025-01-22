@@ -10,17 +10,15 @@ import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.ViewFlipper;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.putrimaharani.gameedukasi.adapter.MenuAdapter;
 import com.putrimaharani.gameedukasi.data.MenuItem;
 import com.putrimaharani.gameedukasi.databinding.ActivityMainGameBinding;
 import com.putrimaharani.gameedukasi.menu.LeaderboardActivity;
 import com.putrimaharani.gameedukasi.menu.QuizActivity;
 import com.putrimaharani.gameedukasi.menu.SettingsActivity;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,6 +99,11 @@ public class MainGame extends AppCompatActivity {
 
     @SuppressLint("NonConstantResourceId")
     private void setupBottomNavigation() {
+        // Pastikan ID sesuai dengan XML
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+        // Set item aktif untuk halaman Settings
+        bottomNavigation.setSelectedItemId(R.id.navigation_home);
+
         binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.navigation_home) {

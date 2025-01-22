@@ -54,7 +54,6 @@ public class StartGameActivity extends AppCompatActivity {
         keys = shuffleArray(keys);
         initializeGame();
     }
-
     private void initializeGame() {
         binding.layoutParent.removeAllViews();
         for (String key : keys) {

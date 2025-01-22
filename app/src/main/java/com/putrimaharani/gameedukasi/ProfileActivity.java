@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.putrimaharani.gameedukasi.databinding.ActivityProfileBinding;
 import com.putrimaharani.gameedukasi.login_register.LoginActivity;
 import com.putrimaharani.gameedukasi.menu.StartGameActivity;
@@ -63,6 +64,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     @SuppressLint("NonConstantResourceId")
     private void setupBottomNavigation() {
+        // Pastikan ID sesuai dengan XML
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+        // Set item aktif untuk halaman Settings
+        bottomNavigation.setSelectedItemId(R.id.navigation_profile);
         // Set listener untuk navigasi bawah
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -73,14 +78,13 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, StartGameActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_profile) {
-                // Tetap di halaman ini
+//                startActivity(new Intent(ProfileActivity.this, ProfileActivity.class));
                 return true;
             } else {
                 return false;
             }
         });
     }
-
     private void setupLogoutButton() {
         // Listener untuk tombol logout
         binding.buttonPanel.setOnClickListener(v -> {

@@ -22,7 +22,6 @@ import com.putrimaharani.gameedukasi.databinding.ActivityQuizBinding;
 import android.content.Intent; // Import this for navigating to MainGameActivity
 
 public class QuizActivity extends AppCompatActivity {
-
     private ActivityQuizBinding binding;
     private MediaPlayer mediaPlayer;
     // Array gambar dan pertanyaan
@@ -44,9 +43,9 @@ public class QuizActivity extends AppCompatActivity {
 
     private String[] correctAnswers = {
             "write",  // Jawaban benar untuk gambar 1
-            "read",   // Jawaban benar untuk gambar 2
+            "book",   // Jawaban benar untuk gambar 2
             "bike",   // Jawaban benar untuk gambar 3
-            "fruit",  // Jawaban benar untuk gambar 4
+            "plants",  // Jawaban benar untuk gambar 4
             "forest", // Jawaban benar untuk gambar 5
     };
 

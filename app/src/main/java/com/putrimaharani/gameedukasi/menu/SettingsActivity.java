@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.putrimaharani.gameedukasi.MainGame;
+import com.putrimaharani.gameedukasi.ProfileActivity;
 import com.putrimaharani.gameedukasi.R;
 import com.putrimaharani.gameedukasi.databinding.ActivitySettingsBinding;
 
@@ -59,12 +60,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         setupBottomNavigation(); // Memanggil metode setup bottom navigation
     }
-
     @SuppressLint("NonConstantResourceId")
     private void setupBottomNavigation() {
         // Pastikan ID sesuai dengan XML
         BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
-
+        // Set item aktif untuk halaman Settings
+        bottomNavigation.setSelectedItemId(R.id.navigation_profile);
         // Set listener untuk navigasi bawah
         bottomNavigation.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId(); // Ambil ID menu item
@@ -75,7 +76,7 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(new Intent(SettingsActivity.this, StartGameActivity.class));
                 return true;
             } else if (itemId == R.id.navigation_profile) {
-                // Tetap di halaman ini
+                startActivity(new Intent(SettingsActivity.this, ProfileActivity.class));
                 return true;
             } else {
                 return false;
